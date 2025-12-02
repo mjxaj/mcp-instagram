@@ -1,7 +1,15 @@
 {
   "version": 2,
-  "buildCommand": "pip install --no-cache-dir -r requirements.txt",
-  "devCommand": "uvicorn server:app --host 0.0.0.0 --port 3000",
+  "buildCommand": "pip install -r requirements.txt",
+  "startCommand": "uvicorn server:app --host 0.0.0.0 --port $PORT",
+  "functions": {
+    "api/**/*": {
+      "runtime": "python3.11"
+    },
+    "server.py": {
+      "runtime": "python3.11"
+    }
+  },
   "routes": [
     { "src": "/(.*)", "dest": "/server.py" }
   ]

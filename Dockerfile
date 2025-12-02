@@ -8,4 +8,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 ENV PORT=3001
 
+EXPOSE 3001
+
 CMD ["sh", "-c", "uvicorn server:app --host 0.0.0.0 --port ${PORT}"]
