@@ -84,9 +84,13 @@ FOUNDER_KEYWORDS = [
     "agency", "brand", "startup", "entrepreneur", "business"
 ]
 
+@app.get("/")
+def root():
+    return {"message": "MCP Instagram Server running"}
+
 @app.get("/.well-known/mcp.json")
 def serve_mcp():
-    mcp_path = Path(__file__).resolve().parent / ".well-known" / "mcp.json"
+    mcp_path = Path(__file__).resolve().parent / "mcp.json"
     return FileResponse(mcp_path, media_type="application/json")
 
 @app.get("/health")
