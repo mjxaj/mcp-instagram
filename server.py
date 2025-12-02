@@ -78,6 +78,10 @@ FOUNDER_KEYWORDS = [
 def serve_mcp():
     return FileResponse(".well-known/mcp.json", media_type="application/json")
 
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
 @app.post("/instagram_search_founders")
 async def instagram_search_founders(input: FounderSearchInput):
     try:
