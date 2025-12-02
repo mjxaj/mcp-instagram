@@ -4,6 +4,7 @@ from pydantic import BaseModel
 from instagrapi import Client
 from dotenv import load_dotenv
 from fastapi.concurrency import run_in_threadpool
+import uvicorn
 import os
 import re
 import requests
@@ -47,6 +48,8 @@ load_dotenv()
 IG_USERNAME = os.getenv("IG_USERNAME")
 IG_PASSWORD = os.getenv("IG_PASSWORD")
 IG_PROXY = os.getenv("IG_PROXY")
+DEFAULT_PORT = 3000
+PORT = int(os.environ["PORT"]) if "PORT" in os.environ else DEFAULT_PORT
 
 app = FastAPI()
 client = Client()
@@ -119,3 +122,7 @@ async def instagram_search_founders(input: FounderSearchInput):
         })
 
     return {"results": output}
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=PORT)
