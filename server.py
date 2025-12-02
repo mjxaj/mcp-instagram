@@ -50,8 +50,7 @@ load_dotenv()
 IG_USERNAME = os.getenv("IG_USERNAME")
 IG_PASSWORD = os.getenv("IG_PASSWORD")
 IG_PROXY = os.getenv("IG_PROXY")
-DEFAULT_PORT = 3001
-PORT = int(os.environ["PORT"]) if "PORT" in os.environ else DEFAULT_PORT
+PORT = int(os.environ.get("PORT", "8000"))
 
 app = FastAPI()
 client = Client()
@@ -86,17 +85,18 @@ FOUNDER_KEYWORDS = [
 
 @app.get("/")
 def root():
-    return {"message": "MCP Instagram Server running"}
+    return {"status": "ok", "message": "MCP Instagram server running"}
 
 @app.get("/.well-known/mcp.json")
 def serve_mcp():
-    mcp_path = Path(__file__).resolve().parent / "mcp.json"
+    mcp_path = Path(__file__).resolve().parent / ".well-known" / "mcp.json"
     return FileResponse(mcp_path, media_type="application/json")
 
 @app.get("/health")
 def health():
     return {"status": "ok"}
 
+@app.post("/mcp/instagram_search_founders")
 @app.post("/instagram_search_founders")
 async def instagram_search_founders(input: FounderSearchInput):
     try:
@@ -144,4 +144,4 @@ async def instagram_search_founders(input: FounderSearchInput):
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=PORT)
+    uvicorn.run("server:app", host="0.0.0.0", port=PORT, reload=False)

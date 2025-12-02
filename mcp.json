@@ -1,17 +1,62 @@
 {
-  "mcp": {
-    "version": "1",
-    "commands": {
-      "instagram.search_user": {
-        "description": "Search Instagram username and return profile",
-        "method": "GET",
-        "path": "/search_user"
+  "version": "1.0",
+  "tools": [
+    {
+      "name": "instagram_search_founders",
+      "description": "Search Instagram profiles and return founders based on bio keywords and extract email information.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string" },
+          "limit": { "type": "integer", "default": 20 }
+        },
+        "required": ["query"]
       },
-      "instagram.get_followers": {
-        "description": "Get followers of a user",
-        "method": "GET",
-        "path": "/followers"
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "username": { "type": "string" },
+                "full_name": { "type": "string" },
+                "instagram": { "type": "string" },
+                "followers": { "type": "integer" },
+                "bio": { "type": "string" },
+                "website": { "type": ["string", "null"] },
+                "profile_pic": { "type": "string" },
+                "email_bio": { "type": ["string", "null"] },
+                "email_found_on_website": { "type": ["string", "null"] },
+                "email_found_linkedin": { "type": ["string", "null"] },
+                "email_guessed": { "type": ["string", "null"] },
+                "email_confidence": {
+                  "type": "string",
+                  "enum": ["high", "medium", "low"]
+                },
+                "email_verified": { "type": "boolean" }
+              },
+              "required": [
+                "username",
+                "full_name",
+                "instagram",
+                "followers",
+                "bio",
+                "website",
+                "profile_pic",
+                "email_bio",
+                "email_found_on_website",
+                "email_found_linkedin",
+                "email_guessed",
+                "email_confidence",
+                "email_verified"
+              ]
+            }
+          }
+        },
+        "required": ["results"]
       }
     }
-  }
+  ]
 }
