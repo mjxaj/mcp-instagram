@@ -1,14 +1,9 @@
 {
-  "version": 3,
-  "buildCommand": "pip install -r requirements.txt",
-  "installCommand": "pip install -r requirements.txt",
-  "framework": null,
-  "functions": {
-    "index.py": {
-      "runtime": "python3.11"
-    }
-  },
+  "version": 2,
+  "builds": [
+    { "src": "server.py", "use": "@vercel/python" }
+  ],
   "routes": [
-    { "src": "/(.*)", "dest": "/" }
+    { "src": "/(.*)", "dest": "server.py" }
   ]
 }
