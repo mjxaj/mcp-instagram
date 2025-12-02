@@ -1,0 +1,18 @@
+# Python virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Environment secrets
+.env
+
+# macOS junk files
+.DS_Store
+
+# Logs
+*.log
+
+# Backup files
+*.bak
