@@ -10,6 +10,7 @@ import os
 import re
 import requests
 from urllib.parse import urlparse
+from pathlib import Path
 
 def extract_emails_from_text(text):
     pattern = r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
@@ -85,7 +86,8 @@ FOUNDER_KEYWORDS = [
 
 @app.get("/.well-known/mcp.json")
 def serve_mcp():
-    return FileResponse(".well-known/mcp.json", media_type="application/json")
+    mcp_path = Path(__file__).resolve().parent / ".well-known" / "mcp.json"
+    return FileResponse(mcp_path, media_type="application/json")
 
 @app.get("/health")
 def health():
