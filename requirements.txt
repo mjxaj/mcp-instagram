@@ -3,3 +3,4 @@ uvicorn[standard]
 instagrapi
 python-dotenv
 pydantic
+mangum==0.17.0
