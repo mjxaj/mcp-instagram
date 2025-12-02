@@ -49,7 +49,7 @@ load_dotenv()
 IG_USERNAME = os.getenv("IG_USERNAME")
 IG_PASSWORD = os.getenv("IG_PASSWORD")
 IG_PROXY = os.getenv("IG_PROXY")
-DEFAULT_PORT = 3000
+DEFAULT_PORT = 3001
 PORT = int(os.environ["PORT"]) if "PORT" in os.environ else DEFAULT_PORT
 
 app = FastAPI()
