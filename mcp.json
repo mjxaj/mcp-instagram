@@ -1,0 +1,17 @@
+{
+  "mcp": {
+    "version": "1",
+    "commands": {
+      "instagram.search_user": {
+        "description": "Search Instagram username and return profile",
+        "method": "GET",
+        "path": "/search_user"
+      },
+      "instagram.get_followers": {
+        "description": "Get followers of a user",
+        "method": "GET",
+        "path": "/followers"
+      }
+    }
+  }
+}
