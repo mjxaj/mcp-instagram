@@ -3,5 +3,8 @@
   "installCommand": "pip install -r requirements.txt",
   "buildCommand": "",
   "outputDirectory": ".",
-  "rewrites": [{ "source": "/(.*)", "destination": "/server.py" }]
+  "rewrites": [
+    { "source": "/.well-known/mcp.json", "destination": "/.well-known/mcp.json" },
+    { "source": "/(.*)", "destination": "/server.py" }
+  ]
 }
