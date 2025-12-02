@@ -1,5 +1,5 @@
-fastapi==0.115.0
-uvicorn[standard]==0.30.3
-instagrapi==2.1.4
-python-dotenv==1.0.1
-requests==2.32.3
+fastapi
+uvicorn[standard]
+instagrapi
+python-dotenv
+pydantic
