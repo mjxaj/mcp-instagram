@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from instagrapi import Client
 from dotenv import load_dotenv
@@ -53,6 +54,14 @@ PORT = int(os.environ["PORT"]) if "PORT" in os.environ else DEFAULT_PORT
 
 app = FastAPI()
 client = Client()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 if IG_PROXY:
     client.set_proxy(IG_PROXY)
