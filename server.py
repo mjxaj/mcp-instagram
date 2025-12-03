@@ -50,7 +50,7 @@ load_dotenv()
 IG_USERNAME = os.getenv("IG_USERNAME")
 IG_PASSWORD = os.getenv("IG_PASSWORD")
 IG_PROXY = os.getenv("IG_PROXY")
-PORT = int(os.environ.get("PORT", "8000"))
+PORT = int(os.environ.get("PORT", 8000))
 
 app = FastAPI()
 client = Client()
@@ -85,7 +85,7 @@ FOUNDER_KEYWORDS = [
 
 @app.get("/")
 def root():
-    return {"status": "ok", "message": "MCP Instagram server running"}
+    return {"status": "running"}
 
 @app.get("/.well-known/mcp.json")
 def serve_mcp():
@@ -94,7 +94,7 @@ def serve_mcp():
 
 @app.get("/health")
 def health():
-    return {"status": "ok"}
+    return {"ok": True}
 
 @app.post("/mcp/instagram_search_founders")
 @app.post("/instagram_search_founders")
