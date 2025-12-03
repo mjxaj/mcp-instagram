@@ -1,9 +1,11 @@
 {
   "version": "1.0",
+  "name": "instagram_mcp_server",
+  "description": "MCP server providing Instagram founder search.",
   "tools": [
     {
       "name": "instagram_search_founders",
-      "description": "Search Instagram profiles and return founders based on bio keywords and extract email information.",
+      "description": "Search Instagram profiles and return founder data.",
       "input_schema": {
         "type": "object",
         "properties": {
@@ -22,40 +24,20 @@
               "properties": {
                 "username": { "type": "string" },
                 "full_name": { "type": "string" },
-                "instagram": { "type": "string" },
+                "instagram_url": { "type": "string" },
                 "followers": { "type": "integer" },
-                "bio": { "type": "string" },
-                "website": { "type": ["string", "null"] },
-                "profile_pic": { "type": "string" },
-                "email_bio": { "type": ["string", "null"] },
-                "email_found_on_website": { "type": ["string", "null"] },
-                "email_found_linkedin": { "type": ["string", "null"] },
-                "email_guessed": { "type": ["string", "null"] },
-                "email_confidence": {
-                  "type": "string",
-                  "enum": ["high", "medium", "low"]
-                },
-                "email_verified": { "type": "boolean" }
+                "bio": { "type": "string" }
               },
               "required": [
                 "username",
                 "full_name",
-                "instagram",
+                "instagram_url",
                 "followers",
-                "bio",
-                "website",
-                "profile_pic",
-                "email_bio",
-                "email_found_on_website",
-                "email_found_linkedin",
-                "email_guessed",
-                "email_confidence",
-                "email_verified"
+                "bio"
               ]
             }
           }
-        },
-        "required": ["results"]
+        }
       }
     }
   ]
